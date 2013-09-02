@@ -19,6 +19,10 @@ import Utilities._
 import Defaults._
 
 object build extends Build {
+
+  libraryDependencies in ThisBuild += compilerPlugin("test.org" %% "printplugin" % "1.0")
+  scalacOptions in ThisBuild += "-P:printplugin:oversrc"  
+
   type Settings = Def.Setting[_]
 
   lazy val specs2 = Project(
@@ -45,7 +49,9 @@ object build extends Build {
     javacOptions ++= Seq("-Xmx3G", "-Xms512m", "-Xss4m"),
     maxErrors := 20,
     scalacOptions ++= Seq("-Xlint", "-deprecation", "-unchecked", "-feature", "-language:_"),
-    scalacOptions in Test ++= Seq("-Yrangepos")
+    scalacOptions in Test ++= Seq("-Yrangepos"),
+    libraryDependencies += compilerPlugin("test.org" %% "printplugin" % "1.0"),
+    scalacOptions += "-P:printplugin:oversrc"
   )
 
   lazy val testingSettings: Seq[Settings] = Seq(
