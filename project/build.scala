@@ -50,7 +50,7 @@ object build extends Build {
     maxErrors := 20,
     scalacOptions ++= Seq("-Xlint", "-deprecation", "-unchecked", "-feature", "-language:_"),
     scalacOptions in Test ++= Seq("-Yrangepos"),
-    libraryDependencies += compilerPlugin("test.org" %% "printplugin" % "1.0"),
+    libraryDependencies += compilerPlugin("org.scala-lang.plugins" %% "printplugin" % "0.2.0"),
     scalacOptions += "-P:printplugin:oversrc"
   )
 
